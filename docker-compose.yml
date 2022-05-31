@@ -1,0 +1,33 @@
+version: "3.9" # optional since v1.27.0
+services:
+  postgres:
+    image: postgres:14
+    ports:
+      - "5432:5432"
+    expose:
+      - "5432"
+    hostname: localhost
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: main
+    restart: always
+  api:
+    # image: meyrambek11/main
+    container_name: api
+    build:
+      dockerfile: Dockerfile
+      context: ./
+    environment:
+      - PORT=8080
+      - DB_HOST=postgres
+      - DB_DATABASE=main
+      - DB_PORT=5432
+      - DB_USER=postgres
+      - DB_PASSWORD=postgres
+    ports:
+      - "8080:8080"
+    depends_on:
+      - postgres
+    links:
+      - "postgres:postgres"
