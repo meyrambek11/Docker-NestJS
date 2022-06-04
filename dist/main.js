@@ -7,7 +7,7 @@ async function start() {
     app.enableCors({
         origin: "http://localhost:4200",
     });
-    await app.listen(8001, () => console.log(`Server started on port = 8001`));
+    await app.listen(8080, () => console.log(`Server started on port = 8080`));
 }
 start();
 //# sourceMappingURL=main.js.map

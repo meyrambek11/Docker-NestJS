@@ -2,6 +2,7 @@ import { Module } from "@nestjs/common";
 import { ConfigModule } from "@nestjs/config";
 import { TypeOrmModule } from "@nestjs/typeorm";
 import { ProductModule } from "./product/product.module";
+import { AppGateway } from "./app.gateway";
 
 @Module({
   imports: [
@@ -20,5 +21,6 @@ import { ProductModule } from "./product/product.module";
     }),
     ProductModule,
   ],
+  providers: [AppGateway],
 })
 export class AppModule {}
