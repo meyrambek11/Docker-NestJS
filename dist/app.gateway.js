@@ -27,14 +27,18 @@ let AppGateway = class AppGateway {
         this.logger.log(`Client connected: ${client.id}`);
     }
     handleMessage(client, text) {
-        return { event: "msgToClient", data: "Hello World" };
+        this.wss.emit("msgToClient", text);
     }
 };
+__decorate([
+    (0, websockets_1.WebSocketServer)(),
+    __metadata("design:type", socket_io_1.Server)
+], AppGateway.prototype, "wss", void 0);
 __decorate([
     (0, websockets_1.SubscribeMessage)("msgToServer"),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [socket_io_1.Socket, String]),
-    __metadata("design:returntype", Object)
+    __metadata("design:returntype", void 0)
 ], AppGateway.prototype, "handleMessage", null);
 AppGateway = __decorate([
     (0, websockets_1.WebSocketGateway)()
